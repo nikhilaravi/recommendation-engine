@@ -8,9 +8,7 @@ Test data: active users
 
 ## Collaborative Filtering
 
-This approach uses the collective intelligence and behaviour of the entire user base to generate recommendations and is content agnostic.
-
-Looks at users who's behaviour and interests resemble the given users and bases recommendations on this data.  
+This approach uses the collective intelligence and behaviour of the entire user base to generate recommendations and is content agnostic. The algorithm would look at users who's behaviour and interests resemble the query user and base recommendations on this data.  
 
 A matrix representation can be used with users on one dimension and items on the other. Each cell contains a binary entry: 1 = item liked 0 = item disliked. If the user hasn't seen the item the cell would be left empty so for a large user and item space the matrix is likely to be very sparse.
 
@@ -22,24 +20,26 @@ A similarity index is a way of gauging how alike two users are.
 
 #### Cosine similarity
 
-Look at the dot product between a query user's vector and all other users.
+Look at the dot product between a query user's vector and each other user.
 
 ![Alt text](/images/cosinesimilarity.png)
 
 #### Jaccard coefficients
 
-Jaccard coefficients between the query user and all other users. Jaccard coefficient is useful for measuring binary data (swiped left/right or liked/disliked) and gives a value between 0 and 1.
+Look at the Jaccard coefficient between the query user and each other user. The Jaccard coefficient is useful for measuring binary data (swiped left/right or liked/disliked) and gives a value between 0 and 1.
 
 ![Alt text](images/jaccard.png)
 
+Could also modify the equation to separate likes and dislikes to calculate a coefficient between -1 and 1 where two users with a coefficient of -1 have completely opposite tastes.
+
+
 #### K-nearest neighbours
 
-For 1000s of users, comparing User A with every other user could take a long time so instead only the K nearest neighbours could be used. The Jaccard Coefficients can be used to create a sorted set in order of most similarity. The top K users can then be extracted and used to generate the recommendations.
+For 1000s of users, comparing a query user with every other user could take a long time. Instead only the K nearest neighbours could be used. The Jaccard Coefficients can be used to create a sorted set in order of most similarity. The top K users can then be extracted and used to generate the recommendations.
 
-Alternatively if using cosine similarity, compute the weighted sum of the top K user's profiles and consider this as our query user's predicted profile e.g perform the weighted sum using normalized cosine similarities as weights (so the weights are between 0 and 1).
+Alternatively if using cosine similarity, the weighted sum of the top K user profiles could be calculated and considered as the query user's predicted profile e.g perform the weighted sum using normalized cosine similarities as weights (so the weights are between 0 and 1).
 
 ![Alt text](/images/weights.png)
-
 
 A basic implementation could run as follows:
 
