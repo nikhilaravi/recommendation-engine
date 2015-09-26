@@ -1,7 +1,9 @@
 # Recommendation-engines
 
 Task: map (user,item) pair into {likes,dislikes}
+
 Training data: known likes/dislikes
+
 Test data: active users
 
 ## Collaborative Filtering
@@ -18,19 +20,25 @@ Compute similarity indices between a query user and every other user. Pick the t
 
 A similarity index is a way of gauging how alike two users are.
 
-### Cosine similarity
+#### Cosine similarity
 
 Look at the dot product of between a query user and all other users.
 
-### Jaccard coefficients
+#### Jaccard coefficients
 
 Jaccard coefficients between User A and all other users that have favourited at least  one of the same items as User A. Jaccard coefficient is useful for measuring binary data (swiped left/right or liked/disliked)
 
-### K-nearest neighbours
+#### K-nearest neighbours
 
 For 1000s of users, comparing User A with every other user could take a long time so instead only the K nearest neighbours could be used. The Jaccard Coefficients can be used to create a sorted set in order of most similarity. The top K users can then be extracted and used to generate the recommendations.
 
 Alternatively if using cosine similarity, compute the weighted sum of the top K user's profiles and consider this as our query user's predicted profile e.g perform the weighted sum using normalized cosine similarities as weights (so the weights are between 0 and 1).
+
+A basic implementation could run as follows:
+
+1. A user logs in to the app
+2. Most similar users are used to predict scores for unrated movies
+3.
 
 ## Content Based Filtering
 
