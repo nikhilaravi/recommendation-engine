@@ -1,0 +1,27 @@
+{
+  "name": "recommendation-engine",
+  "version": "1.0.0",
+  "description": "Building a very simple recommendation engine using collaborative filtering",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nikhilaravi/recommendation-engine.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nikhilaravi/recommendation-engine/issues"
+  },
+  "engines": {
+  "node": ">= 0.10"
+  },
+  "homepage": "https://github.com/nikhilaravi/recommendation-engine#readme",
+  "dependencies": {
+    "hapi": "^10.1.0",
+    "hiredis": "^0.4.0",
+    "redis": "^0.12.1"
+  }
+}
