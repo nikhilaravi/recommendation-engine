@@ -14,7 +14,7 @@ Looks at users who's behaviour and interests resemble the given users and bases 
 
 A matrix representation can be used with users on one dimension and items on the other. Each cell contains a binary entry: 1 = item liked 0 = item disliked. If the user hasn't seen the item the cell would be left empty so for a large user and item space the matrix is likely to be very sparse.
 
-Compute similarity indices between a query user and every other user. Pick the top K closest users and get recommendations out of their rated/liked items.
+A user can be extracted a vector. Similarity indices can be calculated between a query user and every other user. The algorithm could then pick the top K most similar users and get recommendations out of their rated/liked items.
 
 ### Similarity indices
 
@@ -22,17 +22,24 @@ A similarity index is a way of gauging how alike two users are.
 
 #### Cosine similarity
 
-Look at the dot product of between a query user and all other users.
+Look at the dot product between a query user's vector and all other users.
+
+![Alt text](/images/cosinesimilarity.png)
 
 #### Jaccard coefficients
 
-Jaccard coefficients between User A and all other users that have favourited at least  one of the same items as User A. Jaccard coefficient is useful for measuring binary data (swiped left/right or liked/disliked)
+Jaccard coefficients between the query user and all other users. Jaccard coefficient is useful for measuring binary data (swiped left/right or liked/disliked) and gives a value between 0 and 1.
+
+![Alt text](images/jaccard.png)
 
 #### K-nearest neighbours
 
 For 1000s of users, comparing User A with every other user could take a long time so instead only the K nearest neighbours could be used. The Jaccard Coefficients can be used to create a sorted set in order of most similarity. The top K users can then be extracted and used to generate the recommendations.
 
 Alternatively if using cosine similarity, compute the weighted sum of the top K user's profiles and consider this as our query user's predicted profile e.g perform the weighted sum using normalized cosine similarities as weights (so the weights are between 0 and 1).
+
+![Alt text](/images/weights.png)
+
 
 A basic implementation could run as follows:
 
@@ -52,7 +59,7 @@ These two approaches work together and a hybrid approach is often best as it use
 
 Npm modules:
 
-[recommendationRaccoon](https://github.com/guymorita/recommendationRaccoon) - build on top of Node.js and Redis. Uses Jaccard coefficients and K-nearest neighbours algorithm for recommendations.
+* [recommendationRaccoon](https://github.com/guymorita/recommendationRaccoon) - build on top of Node.js and Redis. Uses Jaccard coefficients and K-nearest neighbours algorithm for recommendations.
 
 # Further Reading
 
